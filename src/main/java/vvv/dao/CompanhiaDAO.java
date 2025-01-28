@@ -4,11 +4,13 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDate;
+
 import main.java.vvv.model.Companhia;
 
 public class CompanhiaDAO {
     
-    public void cadastrarCompanhia(Companhia companhia) throws ExceptionDAO {
+    public boolean cadastrarCompanhia(Companhia companhia) throws ExceptionDAO {
 
         String sql = "INSERT INTO companhia (nome, cnpj, activatedAt) VALUES (?,?,?)";
         PreparedStatement preparedStatement = null;
@@ -19,8 +21,9 @@ public class CompanhiaDAO {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, companhia.getNome());
             preparedStatement.setString(2, companhia.getCnpj());
-            preparedStatement.setDate(3, Date.valueOf(companhia.getActivatedAt()));
-            preparedStatement.execute();
+            preparedStatement.setDate(3, Date.valueOf(LocalDate.now()));
+            int rowsInserted = preparedStatement.executeUpdate();
+            return rowsInserted > 0;
 
         } catch (SQLException e) {
             throw new ExceptionDAO("Erro ao cadastrar companhia: " + e);
