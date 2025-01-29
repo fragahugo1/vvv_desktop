@@ -13,16 +13,16 @@ public class CompanhiaDAO {
     public boolean cadastrarCompanhia(Companhia companhia) throws ExceptionDAO {
 
         String sql = "INSERT INTO companhia (nome, cnpj, activatedAt) VALUES (?,?,?)";
-        PreparedStatement preparedStatement = null;
+        PreparedStatement pstm = null;
         Connection connection = null;
 
         try {
             connection = new ConnectionMVC().getConnection();
-            preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, companhia.getNome());
-            preparedStatement.setString(2, companhia.getCnpj());
-            preparedStatement.setDate(3, Date.valueOf(LocalDate.now()));
-            int rowsInserted = preparedStatement.executeUpdate();
+            pstm = connection.prepareStatement(sql);
+            pstm.setString(1, companhia.getNome());
+            pstm.setString(2, companhia.getCnpj());
+            pstm.setDate(3, Date.valueOf(LocalDate.now()));
+            int rowsInserted = pstm.executeUpdate();
             return rowsInserted > 0;
 
         } catch (SQLException e) {
@@ -30,8 +30,8 @@ public class CompanhiaDAO {
         } finally {
 
             try {
-                if (preparedStatement != null){
-                    preparedStatement.close();
+                if (pstm != null){
+                    pstm.close();
                 } 
             } catch (SQLException e) {
                 throw new ExceptionDAO("Erro ao fechar o statement: " + e);

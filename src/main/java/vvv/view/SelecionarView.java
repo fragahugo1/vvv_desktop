@@ -1,15 +1,17 @@
 package main.java.vvv.view;
-
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 
 public class SelecionarView extends JFrame {
 
 
     private static final long serialVersionUID = 1L;
+    private LoginView parentFrame;
 
     /**
      * Launch the application.
@@ -34,6 +36,21 @@ public class SelecionarView extends JFrame {
         initialize();
     }
 
+    public SelecionarView(LoginView parentFrame) {
+        this.parentFrame = parentFrame; // Salva a referência
+        initialize();
+
+        // Adiciona o comportamento para reabrir a janela anterior ao fechar
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                if (parentFrame != null) {
+                    parentFrame.setVisible(true); // Torna a janela anterior visível novamente
+                }
+            }
+        });
+    }
+
     /**
      * Initialize the contents of the frame.
      */
@@ -50,8 +67,13 @@ public class SelecionarView extends JFrame {
         JButton btnCadastrarCompanhia = new JButton("Cadastrar Companhia");
         btnCadastrarCompanhia.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                CadastrarCompanhiaView cadastrarCompanhiaView = new CadastrarCompanhiaView();
+
+                CadastrarCompanhiaView cadastrarCompanhiaView = new CadastrarCompanhiaView(SelecionarView.this);
                 cadastrarCompanhiaView.setVisible(true);
+
+                // Torna a janela atual invisível
+                SelecionarView.this.setVisible(false);
+
             }
         });
         btnCadastrarCompanhia.setBounds(133, 160, 146, 46);
@@ -67,3 +89,4 @@ public class SelecionarView extends JFrame {
     }
 
 }
+

@@ -10,9 +10,9 @@ import javax.swing.JTextField;
 import javax.swing.JFormattedTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
-import java.io.Serial;
-
 import main.java.vvv.dao.CompanhiaDAO;
 import main.java.vvv.dao.ExceptionDAO;
 import main.java.vvv.model.Companhia;
@@ -22,7 +22,6 @@ public class CadastrarCompanhiaView extends JFrame {
     /**
      *
      */
-    @Serial
     private static final long serialVersionUID = 1L;
     private JTextField textField;
 
@@ -42,12 +41,27 @@ public class CadastrarCompanhiaView extends JFrame {
         });
     }
 
-    /**
-     * Create the application.
-     */
     public CadastrarCompanhiaView() {
         initialize();
     }
+
+    public CadastrarCompanhiaView(SelecionarView parentFrame) {
+        initialize();
+
+        // Adiciona o comportamento para reabrir a janela anterior ao fechar
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                if (parentFrame != null) {
+                    parentFrame.setVisible(true); // Torna a janela anterior visível novamente
+                }
+            }
+        });
+    }
+
+    /**
+     * Create the application.
+     */
 
     /**
      * Initialize the contents of the frame.
@@ -93,11 +107,6 @@ public class CadastrarCompanhiaView extends JFrame {
         formattedTextField.setBounds(132, 191, 222, 33);
         getContentPane().add(formattedTextField);
 
-        JButton btnNewButton = getJButton(formattedTextField);
-        getContentPane().add(btnNewButton);
-    }
-
-    private JButton getJButton(JFormattedTextField formattedTextField) {
         JButton btnNewButton = new JButton("Confirmar");
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -133,6 +142,7 @@ public class CadastrarCompanhiaView extends JFrame {
         });
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
         btnNewButton.setBounds(154, 252, 121, 38);
-        return btnNewButton;
+        getContentPane().add(btnNewButton);
     }
 }
+
