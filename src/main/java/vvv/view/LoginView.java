@@ -4,16 +4,26 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import java.awt.BorderLayout;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.awt.font.ImageGraphicAttribute;
+import java.awt.Image;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.JButton;
+import java.awt.Color;
+import java.awt.Label;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class LoginView {
+public class LoginView extends JFrame {
 
-    private JFrame frmLoginview;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     private JTextField textField;
     private JTextField textField_1;
     /**
@@ -28,7 +38,7 @@ public class LoginView {
             public void run() {
                 try {
                     LoginView window = new LoginView();
-                    window.frmLoginview.setVisible(true);
+                    window.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -47,45 +57,48 @@ public class LoginView {
      * Initialize the contents of the frame.
      */
     private void initialize() {
-        frmLoginview = new JFrame();
-        frmLoginview.setTitle("Login");
-        frmLoginview.setBounds(100, 100, 450, 550);
-        frmLoginview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frmLoginview.getContentPane().setLayout(null);
+
+        setTitle("Login");
+        setBounds(100, 100, 450, 550);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
         JLabel lblNewLabel = new JLabel("Login");
         lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
         lblNewLabel.setBounds(83, 278, 59, 41);
-        frmLoginview.getContentPane().add(lblNewLabel);
+        getContentPane().add(lblNewLabel);
 
         textField = new JTextField();
         textField.setBounds(152, 289, 174, 27);
-        frmLoginview.getContentPane().add(textField);
+        getContentPane().add(textField);
         textField.setColumns(10);
 
         textField_1 = new JTextField();
         textField_1.setColumns(10);
         textField_1.setBounds(152, 359, 174, 27);
-        frmLoginview.getContentPane().add(textField_1);
+        getContentPane().add(textField_1);
 
         JLabel lblSenha = new JLabel("Senha");
         lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 20));
         lblSenha.setBounds(83, 348, 59, 41);
-        frmLoginview.getContentPane().add(lblSenha);
+        getContentPane().add(lblSenha);
 
-        JButton btnNewButton = new JButton("Avançar");
-        btnNewButton.addActionListener(new ActionListener() {
+        JButton btnLogin = new JButton("Avançar");
+        btnLogin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                SelecionarView selecionarView = new SelecionarView();
+                SelecionarView selecionarView = new SelecionarView(LoginView.this);
                 selecionarView.setVisible(true);
+
+                LoginView.this.setVisible(false);
             }
         });
-        btnNewButton.setBounds(148, 444, 129, 41);
-        frmLoginview.getContentPane().add(btnNewButton);
+        btnLogin.setBounds(148, 444, 129, 41);
+        getContentPane().add(btnLogin);
 
         JLabel lblNewLabel_1 = new JLabel("New label");
-        lblNewLabel_1.setIcon(new ImageIcon("image/vvv_desktop.webp"));
+        lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\manager\\Downloads\\projetoTeste\\projetoTeste\\image\\vvv_desktop.png"));
         lblNewLabel_1.setBounds(83, 29, 302, 238);
-        frmLoginview.getContentPane().add(lblNewLabel_1);
+        getContentPane().add(lblNewLabel_1);
     }
 }
+

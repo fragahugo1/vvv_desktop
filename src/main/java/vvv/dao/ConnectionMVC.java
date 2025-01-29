@@ -8,7 +8,7 @@ public class ConnectionMVC{
 
     private static final String url = "jdbc:mysql://localhost:3306/vvv_projeto";
     private static final String user = "root";
-    private static final String password = "cefetmg092022";
+    private static final String password = "root1234";
 
     private static Connection connection;
 
