@@ -20,6 +20,11 @@ public class Companhia {
         this.activatedAt = activatedAt;
     }
 
+    public Companhia(String nome,String cnpj) {
+        this.nome = nome;
+        this.cnpj = cnpj;
+    }
+
     public long getId() {
         return id;
     }

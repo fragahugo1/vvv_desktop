@@ -6,21 +6,24 @@ import java.sql.SQLException;
 
 public class ConnectionMVC{
 
-    public Connection getConnection(){
-        Connection connection = null;
+    private static final String url = "jdbc:mysql://localhost:3306/vvv_projeto";
+    private static final String user = "root";
+    private static final String password = "cefetmg092022";
 
-        try{
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+    private static Connection connection;
 
-        try{
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/vvv_projeto?useSSL=false", "root", "cefetmg092022");
+    public static Connection getConnection() {
+
+        try {
+            if (connection == null) {
+                connection = DriverManager.getConnection(url, user, password);
+                return connection;
+            }
+            else
+                return connection;
         } catch (SQLException e) {
             e.printStackTrace();
+            return null;
         }
-
-        return connection;
     }
 }
