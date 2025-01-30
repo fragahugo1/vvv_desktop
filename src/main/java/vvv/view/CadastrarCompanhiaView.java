@@ -13,8 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
-import main.java.vvv.dao.CompanhiaDAO;
-import main.java.vvv.dao.ExceptionDAO;
+import main.java.vvv.controller.CompanhiaController;
 import main.java.vvv.model.Companhia;
 
 public class CadastrarCompanhiaView extends JFrame {
@@ -118,15 +117,15 @@ public class CadastrarCompanhiaView extends JFrame {
                     return;
                 }
 
-                // criar objeto Companhia
+                // cria objeto Companhia
                 Companhia companhia = new Companhia(nome, cnpj);
 
-                // chamar a DAO para cadastrar
-                CompanhiaDAO companhiaDAO = new CompanhiaDAO();
+                // chama a controller para cadastrar
+                CompanhiaController companhiaController = new CompanhiaController();
                 boolean sucesso = false;
                 try {
-                    sucesso = companhiaDAO.cadastrarCompanhia(companhia);
-                } catch (ExceptionDAO e1) {
+                    sucesso = companhiaController.cadastrarCompanhia(nome, cnpj);
+                } catch (Exception e1) {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
                 }

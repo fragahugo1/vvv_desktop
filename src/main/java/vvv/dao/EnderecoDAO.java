@@ -10,29 +10,29 @@ public class EnderecoDAO {
     public boolean cadastrarEndereco(Endereco endereco) throws ExceptionDAO {
         String sql = "INSERT INTO endereco (rua, numero, pais, codigoPostal, longitude, latitude) VALUES (?, ?, ?, ?, ?, ?)";
 
-        Connection conn = null;
-        PreparedStatement pstm = null;
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
         boolean sucesso = false;
 
         try {
-            conn = ConnectionMVC.getConnection();
-            pstm = conn.prepareStatement(sql);
-            pstm.setString(1, endereco.getRua());
-            pstm.setInt(2, endereco.getNumero());
-            pstm.setString(3, endereco.getPais());
-            pstm.setString(4, endereco.getCodigoPostal());
-            pstm.setString(5, endereco.getLongitude());
-            pstm.setString(6, endereco.getLatitude());
+            connection = ConnectionMVC.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, endereco.getRua());
+            preparedStatement.setInt(2, endereco.getNumero());
+            preparedStatement.setString(3, endereco.getPais());
+            preparedStatement.setString(4, endereco.getCodigoPostal());
+            preparedStatement.setString(5, endereco.getLongitude());
+            preparedStatement.setString(6, endereco.getLatitude());
 
-            int linhasAfetadas = pstm.executeUpdate();
-            sucesso = linhasAfetadas > 0;
+            int rowsinserted = preparedStatement.executeUpdate();
+            sucesso = rowsinserted > 0;
 
         } catch (SQLException e) {
             throw new ExceptionDAO("Erro ao cadastrar endereço: " + e.getMessage());
         } finally {
             try {
-                if (pstm != null) pstm.close();
-                if (conn != null) conn.close();
+                if (preparedStatement != null) preparedStatement.close();
+                if (connection != null) connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }

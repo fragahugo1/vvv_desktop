@@ -12,19 +12,15 @@ public class Local {
         aeroporto, rodoviaria, porto
     }
 
-    // Construtor vazio
     public Local() {
     }
 
-    // Construtor com todos os atributos
-    public Local(Long id, String name, Long id_endereco, TipoLocal tipo) {
-        this.id = id;
+    public Local(String name, Long id_endereco, TipoLocal tipo) {
         this.name = name;
         this.id_endereco = id_endereco;
         this.tipo = tipo;
     }
 
-    // Getters e Setters
     public Long getId() {
         return id;
     }
