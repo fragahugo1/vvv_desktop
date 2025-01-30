@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 public class ConnectionMVC{
 
+
     private static final String url = "jdbc:mysql://localhost:3306/vvv_projeto";
     private static final String user = "root";
     private static final String password = "root1234";
@@ -13,6 +14,12 @@ public class ConnectionMVC{
     private static Connection connection;
 
     public static Connection getConnection() {
+
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         try {
             if (connection == null) {
