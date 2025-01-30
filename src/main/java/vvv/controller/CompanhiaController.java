@@ -7,7 +7,7 @@ import main.java.vvv.model.Companhia;
 
 public class CompanhiaController {
 
-    private CompanhiaDAO companhiaDAO;
+    private final CompanhiaDAO companhiaDAO;
 
     public CompanhiaController(){
         this.companhiaDAO = new CompanhiaDAO();
