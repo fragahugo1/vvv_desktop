@@ -8,8 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
-import main.java.vvv.dao.EnderecoDAO;
-import main.java.vvv.dao.ExceptionDAO;
+import main.java.vvv.controller.EnderecoController;
 import main.java.vvv.model.Endereco;
 
 import javax.swing.JTextField;
@@ -160,14 +159,15 @@ public class CadastrarEnderecoView extends JFrame {
 
                 int numero = Integer.parseInt(numeroTexto);
 
+                //cria objeto
                 Endereco endereco = new Endereco(logradouro, numero, pais, cep, longitude, latitude);
 
-
-                EnderecoDAO enderecoDAO = new EnderecoDAO();
+                //chama a controller
+                EnderecoController enderecoController = new EnderecoController();
                 boolean sucesso = false;
                 try {
-                    sucesso = enderecoDAO.cadastrarEndereco(endereco);
-                } catch (ExceptionDAO e1) {
+                    sucesso = enderecoController.cadastrarEndereco(logradouro, numero, pais, cep, longitude, latitude);
+                } catch (Exception e1) {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
                 }
