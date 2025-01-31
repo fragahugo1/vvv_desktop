@@ -17,7 +17,7 @@ public class CompanhiaDAO {
         Connection connection = null;
 
         try {
-            connection = new ConnectionMVC().getConnection();
+            connection = ConnectionMVC.getConnection();
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, companhia.getNome());
             preparedStatement.setString(2, companhia.getCnpj());

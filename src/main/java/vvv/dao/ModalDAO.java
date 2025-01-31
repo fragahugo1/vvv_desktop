@@ -19,7 +19,7 @@ public class ModalDAO {
             pstm = conn.prepareStatement(sql);
             pstm.setInt(1, modal.getCapacidade());
             pstm.setDate(2, modal.getDataFabricacao());
-            pstm.setLong(3, modal.getIdCompanhia());
+            pstm.setLong(3, modal.getId_companhia());
             pstm.setString(4, modal.getTipo().name());  // Converte o Enum para String
 
             int rowsAffected = pstm.executeUpdate();
