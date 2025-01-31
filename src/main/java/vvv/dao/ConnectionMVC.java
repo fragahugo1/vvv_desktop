@@ -15,12 +15,6 @@ public class ConnectionMVC{
 
     public static Connection getConnection() {
 
-        try{
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
         try {
             if (connection == null) {
                 connection = DriverManager.getConnection(url, user, password);
