@@ -1,8 +1,15 @@
 package main.java.vvv.controller;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import main.java.vvv.dao.CompanhiaDAO;
+import main.java.vvv.dao.ConnectionMVC;
 import main.java.vvv.model.Companhia;
 
 public class CompanhiaController {
@@ -27,4 +34,6 @@ public class CompanhiaController {
             return false;
         }
     }
+
+
 }
