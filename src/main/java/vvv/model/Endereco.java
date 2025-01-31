@@ -10,11 +10,9 @@ public class Endereco {
     private String longitude;
     private String latitude;
 
-    // Construtor vazio
     public Endereco() {
     }
 
-    // Construtor com parâmetros
     public Endereco(String rua, int numero, String pais, String codigoPostal, String longitude, String latitude) {
         this.rua = rua;
         this.numero = numero;
@@ -24,7 +22,6 @@ public class Endereco {
         this.latitude = latitude;
     }
 
-    // Getters e Setters
     public long getId() {
         return id;
     }

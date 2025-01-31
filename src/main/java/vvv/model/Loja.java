@@ -8,11 +8,9 @@ public class Loja {
     private boolean virtualmente;
     private long id_endereco;
 
-    // Construtor vazio
     public Loja() {
     }
 
-    // Construtor com parâmetros
     public Loja(String nome, String cnpj, boolean virtualmente, long id_endereco) {
         this.nome = nome;
         this.cnpj = cnpj;
@@ -20,7 +18,6 @@ public class Loja {
         this.id_endereco = id_endereco;
     }
 
-    // Getters e Setters
     public long getId() {
         return id;
     }

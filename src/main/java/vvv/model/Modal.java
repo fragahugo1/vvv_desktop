@@ -10,23 +10,14 @@ public class Modal {
     private long id_companhia;
     private TipoModal tipo;
 
+    // Enum para o tipo
     public enum TipoModal{
         aviao, onibus, navio, trem
     }
 
     public Modal() {
-
     }
 
-    public Modal(long id, int capacidade, Date dataFabricacao, long id_companhia, TipoModal tipo) {
-        this.id = id;
-        this.capacidade = capacidade;
-        this.dataFabricacao = dataFabricacao;
-        this.id_companhia = id_companhia;
-        this.tipo = tipo;
-    }
-
-    // Construtor sem ID (para inserções no banco)
     public Modal(int capacidade, Date dataFabricacao, long id_companhia, TipoModal tipo) {
         this.capacidade = capacidade;
         this.dataFabricacao = dataFabricacao;
@@ -34,7 +25,6 @@ public class Modal {
         this.tipo = tipo;
     }
 
-    // Getters e Setters
     public long getId() {
         return id;
     }
