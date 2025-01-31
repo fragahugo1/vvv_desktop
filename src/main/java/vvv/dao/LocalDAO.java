@@ -18,7 +18,7 @@ public class LocalDAO {
             conn = ConnectionMVC.getConnection();
             pstm = conn.prepareStatement(sql);
             pstm.setLong(1, local.getId());
-            pstm.setString(2, local.getName());
+            pstm.setString(2, local.getNome());
             pstm.setLong(3, local.getIdEndereco());
             pstm.setString(4, local.getTipo().name());
 

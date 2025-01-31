@@ -3,7 +3,7 @@ package main.java.vvv.model;
 public class Local {
 
     private Long id;
-    private String name;
+    private String nome;
     private Long id_endereco;
     private TipoLocal tipo;
 
@@ -16,7 +16,7 @@ public class Local {
     }
 
     public Local(String name, Long id_endereco, TipoLocal tipo) {
-        this.name = name;
+        this.nome = name;
         this.id_endereco = id_endereco;
         this.tipo = tipo;
     }
@@ -29,12 +29,12 @@ public class Local {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNome() {
+        return nome;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public Long getIdEndereco() {
