@@ -44,7 +44,7 @@ public class CadastrarCompanhiaView extends JFrame {
         initialize();
     }
 
-    public CadastrarCompanhiaView(SelecionarView parentFrame) {
+    public CadastrarCompanhiaView(SelecionarCompanhiaView parentFrame) {
         initialize();
 
         // Adiciona o comportamento para reabrir a janela anterior ao fechar
@@ -132,8 +132,7 @@ public class CadastrarCompanhiaView extends JFrame {
 
                 if (sucesso) {
                     JOptionPane.showMessageDialog(null, "Companhia cadastrada com sucesso!");
-                    textField.setText(""); // Limpar o campo de texto
-                    formattedTextField.setText(""); // Limpar o campo de CNPJ
+                    dispose();
                 } else {
                     JOptionPane.showMessageDialog(null, "Erro ao cadastrar companhia!", "Erro", JOptionPane.ERROR_MESSAGE);
                 }

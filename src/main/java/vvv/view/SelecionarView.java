@@ -60,16 +60,24 @@ public class SelecionarView extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Fecha apenas esta janela
         getContentPane().setLayout(null);
 
-        JButton btnNewButton = new JButton("Cadastrar Modal");
-        btnNewButton.setBounds(133, 76, 146, 46);
-        getContentPane().add(btnNewButton);
+        JButton btnCadastrarCliente = new JButton("CLIENTE");
+        btnCadastrarCliente.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                SelecionarClienteView selecionarClienteView = new SelecionarClienteView(SelecionarView.this);
+                selecionarClienteView.setVisible(true);
 
-        JButton btnCadastrarCompanhia = new JButton("Cadastrar Companhia");
+                SelecionarView.this.setVisible(false);
+            }
+        });
+        btnCadastrarCliente.setBounds(133, 76, 146, 46);
+        getContentPane().add(btnCadastrarCliente);
+
+        JButton btnCadastrarCompanhia = new JButton("COMPANHIA");
         btnCadastrarCompanhia.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                CadastrarCompanhiaView cadastrarCompanhiaView = new CadastrarCompanhiaView(SelecionarView.this);
-                cadastrarCompanhiaView.setVisible(true);
+                SelecionarCompanhiaView selecionarCompanhiaView = new SelecionarCompanhiaView(SelecionarView.this);
+                selecionarCompanhiaView.setVisible(true);
 
                 // Torna a janela atual invisível
                 SelecionarView.this.setVisible(false);
@@ -79,9 +87,9 @@ public class SelecionarView extends JFrame {
         btnCadastrarCompanhia.setBounds(133, 160, 146, 46);
         getContentPane().add(btnCadastrarCompanhia);
 
-        JButton btnCadastrarCliente = new JButton("Cadastrar Cliente");
-        btnCadastrarCliente.setBounds(133, 249, 146, 46);
-        getContentPane().add(btnCadastrarCliente);
+        JButton btnCadastrarModal = new JButton("MODAL");
+        btnCadastrarModal.setBounds(133, 249, 146, 46);
+        getContentPane().add(btnCadastrarModal);
 
         JButton btnCriarReserva = new JButton("Criar Reserva");
         btnCriarReserva.setBounds(133, 338, 146, 46);
@@ -89,4 +97,3 @@ public class SelecionarView extends JFrame {
     }
 
 }
-
