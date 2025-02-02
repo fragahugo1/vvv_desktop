@@ -35,5 +35,42 @@ public class CompanhiaController {
         }
     }
 
+    public List<Companhia> listarCompanhias(){
+        List<Companhia> companhias = companhiaDAO.listarCompanhias();
+        return companhias;
+    }
 
+
+    public boolean deletarCompanhia(long id){
+
+        try {
+            Companhia companhia = companhiaDAO.buscarPorId(id);
+            companhiaDAO.deletarCompanhia(companhia);
+
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            return false;
+        }
+    }
+
+    public boolean atualizarCompanhia(long id, String nome, String cnpj){
+
+        try{
+            LocalDate updatedAt = LocalDate.now();
+            Companhia companhia = companhiaDAO.buscarPorId(id);
+
+            companhia.setNome(nome);
+            companhia.setCnpj(cnpj);
+            companhia.setUpdatedAt(updatedAt);
+
+            companhiaDAO.atualizarCompanhia(companhia);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            return false;
+        }
+    }
 }

@@ -1,14 +1,16 @@
 package main.java.vvv.dao;
 
-import main.java.vvv.model.Local;
+import main.java.vvv.model.Reserva;
+
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class LocalDAO {
+public class ReservaDAO {
 
-    public boolean cadastrarLocal(Local local) throws ExceptionDAO {
-        String sql = "INSERT INTO local (id, name, id_endereco, tipo) VALUES (?, ?, ?, ?)";
+    public boolean cadastrarReserva(Reserva reserva) throws ExceptionDAO {
+        String sql = "INSERT INTO reserva (data, chegada, partida, status, id_cliente, id_modal) VALUES (?, ?, ?, ?, ?, ?)";
 
         Connection conn = null;
         PreparedStatement pstm = null;
@@ -17,16 +19,18 @@ public class LocalDAO {
         try {
             conn = ConnectionMVC.getConnection();
             pstm = conn.prepareStatement(sql);
-            pstm.setLong(1, local.getId());
-            pstm.setString(2, local.getNome());
-            pstm.setLong(3, local.getIdEndereco());
-            pstm.setString(4, local.getTipo().name());
+            pstm.setDate(1, (Date) reserva.getData());
+            pstm.setDate(2, (Date) reserva.getChegada());
+            pstm.setDate(3, (Date) reserva.getPartida());
+            pstm.setBoolean(4, reserva.isStatus());
+            pstm.setLong(5, reserva.getId_cliente());
+            pstm.setLong(6, reserva.getId_modal());
 
             int linhasAfetadas = pstm.executeUpdate();
             sucesso = linhasAfetadas > 0;
 
         } catch (SQLException e) {
-            throw new ExceptionDAO("Erro ao cadastrar local: " + e.getMessage());
+            throw new ExceptionDAO("Erro ao cadastrar reserva: " + e.getMessage());
         } finally {
             try {
                 if (pstm != null) pstm.close();

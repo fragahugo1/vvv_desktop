@@ -1,10 +1,9 @@
 package main.java.vvv.controller;
 
-import java.sql.Date;
-
 import main.java.vvv.dao.ModalDAO;
+import main.java.vvv.model.Local;
 import main.java.vvv.model.Modal;
-import main.java.vvv.model.Modal.TipoModal;
+import java.sql.Date;
 
 public class ModalController {
 
@@ -14,10 +13,10 @@ public class ModalController {
         this.modalDAO = new ModalDAO();
     }
 
-    public boolean cadastrarModal(int capacidade, Date dataFabricacao, int id_companhia, TipoModal tipo){
+    public boolean cadastrarModal(int capacidade, Date dataFabricacao, long id_companhia, Local partida,Local chegada, Modal.TipoModal tipo) {
 
         try {
-            Modal modal = new Modal(capacidade, dataFabricacao, id_companhia, tipo);
+            Modal modal = new Modal(capacidade, dataFabricacao, id_companhia, partida, chegada, tipo);
             modalDAO.cadastrarModal(modal);
 
             return true;
@@ -27,5 +26,4 @@ public class ModalController {
             return false;
         }
     }
-
 }

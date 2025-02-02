@@ -1,14 +1,15 @@
 package main.java.vvv.dao;
 
-import main.java.vvv.model.Local;
+import main.java.vvv.model.Ticket;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class LocalDAO {
+public class TicketDAO {
 
-    public boolean cadastrarLocal(Local local) throws ExceptionDAO {
-        String sql = "INSERT INTO local (id, name, id_endereco, tipo) VALUES (?, ?, ?, ?)";
+    public boolean cadastrarTiccket(Ticket ticket) throws ExceptionDAO {
+        String sql = "INSERT INTO ticket (assento, id_reserva) VALUES (?, ?)";
 
         Connection conn = null;
         PreparedStatement pstm = null;
@@ -17,16 +18,14 @@ public class LocalDAO {
         try {
             conn = ConnectionMVC.getConnection();
             pstm = conn.prepareStatement(sql);
-            pstm.setLong(1, local.getId());
-            pstm.setString(2, local.getNome());
-            pstm.setLong(3, local.getIdEndereco());
-            pstm.setString(4, local.getTipo().name());
+            pstm.setString(1, ticket.getAssento());
+            pstm.setLong(2, ticket.getId_reserva());
 
             int linhasAfetadas = pstm.executeUpdate();
             sucesso = linhasAfetadas > 0;
 
         } catch (SQLException e) {
-            throw new ExceptionDAO("Erro ao cadastrar local: " + e.getMessage());
+            throw new ExceptionDAO("Erro ao cadastrar ticket: " + e.getMessage());
         } finally {
             try {
                 if (pstm != null) pstm.close();

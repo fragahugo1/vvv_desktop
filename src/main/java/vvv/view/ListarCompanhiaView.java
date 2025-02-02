@@ -9,6 +9,7 @@ import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.*;
 
+import main.java.vvv.controller.CompanhiaController;
 import main.java.vvv.dao.CompanhiaDAO;
 import main.java.vvv.model.Companhia;
 
@@ -16,6 +17,7 @@ public class ListarCompanhiaView extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JTextField textFieldNome;
+    private JTextField textFieldIdDelete;
     private JTextField textFieldId;
     private JTextField textFieldCnpj;
     private JTextArea textArea;
@@ -90,15 +92,15 @@ public class ListarCompanhiaView extends JFrame {
         lblDeletar.setBounds(105, 370, 250, 30);
         getContentPane().add(lblDeletar);
 
-        JLabel lblNome = new JLabel("Nome:");
-        lblNome.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        lblNome.setBounds(100, 410, 100, 30);
-        getContentPane().add(lblNome);
+        JLabel lblint = new JLabel("ID:");
+        lblint.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        lblint.setBounds(100, 410, 100, 30);
+        getContentPane().add(lblint);
 
-        textFieldNome = new JTextField();
-        textFieldNome.setBounds(160, 410, 200, 30);
-        getContentPane().add(textFieldNome);
-        textFieldNome.setColumns(10);
+        textFieldIdDelete = new JTextField();
+        textFieldIdDelete.setBounds(160, 410, 200, 30);
+        getContentPane().add(textFieldIdDelete);
+        textFieldIdDelete.setColumns(10);
 
         JButton btnDeletar = new JButton("Deletar");
         btnDeletar.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -156,8 +158,8 @@ public class ListarCompanhiaView extends JFrame {
     }
 
     private void listarCompanhias() {
-        CompanhiaDAO dao = new CompanhiaDAO();
-        List<Companhia> lista = dao.listarCompanhias();
+        CompanhiaController companhiaController = new CompanhiaController();
+        List<Companhia> lista = companhiaController.listarCompanhias();
 
         StringBuilder sb = new StringBuilder();
         sb.append("ID\tNome\tCNPJ\n");
@@ -173,14 +175,10 @@ public class ListarCompanhiaView extends JFrame {
     }
 
     private void deletarCompanhia() {
-        String nome = textFieldNome.getText().trim();
-        if (nome.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Digite um nome!", "Erro", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+        long id = Long.parseLong(textFieldIdDelete.getText());
 
-        CompanhiaDAO dao = new CompanhiaDAO();
-        boolean sucesso = dao.deletarCompanhia(nome);
+        CompanhiaController companhiaController = new CompanhiaController();
+        boolean sucesso = companhiaController.deletarCompanhia(id);
 
         if (sucesso) {
             JOptionPane.showMessageDialog(this, "Companhia deletada com sucesso!");
@@ -191,12 +189,13 @@ public class ListarCompanhiaView extends JFrame {
     }
 
     private void atualizarCompanhia() {
-        int id = Integer.parseInt(textFieldId.getText());
+        long id = Long.parseLong(textFieldId.getText());
+
         String novoNome = textFieldNome.getText();
         String novoCnpj = textFieldCnpj.getText();
 
-        CompanhiaDAO dao = new CompanhiaDAO();
-        boolean sucesso = dao.atualizarCompanhia(id, novoNome, novoCnpj);
+        CompanhiaController companhiaController = new CompanhiaController();
+        boolean sucesso = companhiaController.atualizarCompanhia(id, novoNome, novoCnpj);
 
         if (sucesso) {
             JOptionPane.showMessageDialog(this, "Companhia atualizada com sucesso!");
