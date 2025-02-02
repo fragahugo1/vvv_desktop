@@ -7,7 +7,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 
-public class SelecionarView extends JFrame {
+public class FuncionarioView extends JFrame {
 
 
     private static final long serialVersionUID = 1L;
@@ -20,7 +20,7 @@ public class SelecionarView extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    SelecionarView window = new SelecionarView();
+                    FuncionarioView window = new FuncionarioView();
                     window.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -32,11 +32,11 @@ public class SelecionarView extends JFrame {
     /**
      * Create the application.
      */
-    public SelecionarView() {
+    public FuncionarioView() {
         initialize();
     }
 
-    public SelecionarView(LoginView parentFrame) {
+    public FuncionarioView(LoginView parentFrame) {
         this.parentFrame = parentFrame; // Salva a referência
         initialize();
 
@@ -60,33 +60,40 @@ public class SelecionarView extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Fecha apenas esta janela
         getContentPane().setLayout(null);
 
-        JButton btnNewButton = new JButton("Cadastrar Modal");
-        btnNewButton.setBounds(133, 76, 146, 46);
-        getContentPane().add(btnNewButton);
+        JButton btnCadastrarCliente = new JButton("CLIENTE");
+        btnCadastrarCliente.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                SelecionarClienteView selecionarClienteView = new SelecionarClienteView(FuncionarioView.this);
+                selecionarClienteView.setVisible(true);
 
-        JButton btnCadastrarCompanhia = new JButton("Cadastrar Companhia");
+                FuncionarioView.this.setVisible(false);
+            }
+        });
+        btnCadastrarCliente.setBounds(133, 76, 146, 46);
+        getContentPane().add(btnCadastrarCliente);
+
+        JButton btnCadastrarCompanhia = new JButton("COMPANHIA");
         btnCadastrarCompanhia.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                CadastrarCompanhiaView cadastrarCompanhiaView = new CadastrarCompanhiaView(SelecionarView.this);
-                cadastrarCompanhiaView.setVisible(true);
+                SelecionarCompanhiaView selecionarCompanhiaView = new SelecionarCompanhiaView(FuncionarioView.this);
+                selecionarCompanhiaView.setVisible(true);
 
                 // Torna a janela atual invisível
-                SelecionarView.this.setVisible(false);
+                FuncionarioView.this.setVisible(false);
 
             }
         });
         btnCadastrarCompanhia.setBounds(133, 160, 146, 46);
         getContentPane().add(btnCadastrarCompanhia);
 
-        JButton btnCadastrarCliente = new JButton("Cadastrar Cliente");
-        btnCadastrarCliente.setBounds(133, 249, 146, 46);
-        getContentPane().add(btnCadastrarCliente);
+        JButton btnCadastrarModal = new JButton("MODAL");
+        btnCadastrarModal.setBounds(133, 249, 146, 46);
+        getContentPane().add(btnCadastrarModal);
 
-        JButton btnCriarReserva = new JButton("Criar Reserva");
+        JButton btnCriarReserva = new JButton("RESERVA");
         btnCriarReserva.setBounds(133, 338, 146, 46);
         getContentPane().add(btnCriarReserva);
     }
 
 }
-

@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.*;
 
@@ -12,6 +14,8 @@ import main.java.vvv.dao.CompanhiaDAO;
 import main.java.vvv.model.Companhia;
 
 public class ListarCompanhiaView extends JFrame {
+
+    private static final long serialVersionUID = 1L;
     private JTextField textFieldNome;
     private JTextField textFieldIdDelete;
     private JTextField textFieldId;
@@ -35,10 +39,22 @@ public class ListarCompanhiaView extends JFrame {
         initialize();
     }
 
+    public ListarCompanhiaView(SelecionarCompanhiaView parentFrame) {
+        initialize();
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                if (parentFrame != null) {
+                    parentFrame.setVisible(true); // Torna a janela anterior visível novamente
+                }
+            }
+        });
+    }
+
     private void initialize() {
         setTitle("Listagem de Companhia");
         setBounds(100, 100, 500, 800);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
         JLabel lblTitulo = new JLabel("Vai&Volta Viagens");
