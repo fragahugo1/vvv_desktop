@@ -44,7 +44,7 @@ public class CadastrarCompanhiaView extends JFrame {
         initialize();
     }
 
-    public CadastrarCompanhiaView(SelecionarCompanhiaView parentFrame) {
+    public CadastrarCompanhiaView(JFrame parentFrame) {
         initialize();
 
         // Adiciona o comportamento para reabrir a janela anterior ao fechar

@@ -13,7 +13,9 @@ import java.awt.event.ActionEvent;
 public class SelecionarCompanhiaView extends JFrame {
 
     private static final long serialVersionUID = 1L;
-    private SelecionarView parentFrame;
+    private FuncionarioView parentFrame;
+    private GerenteView parentGerenteFrame;
+    private DiretorView parentDiretorFrame;
 
     /**
      * Launch the application.
@@ -22,8 +24,8 @@ public class SelecionarCompanhiaView extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    SelecionarView selecionarView = new SelecionarView(); // Criando a janela anterior
-                    selecionarView.setVisible(true);
+                    FuncionarioView funcionarioView = new FuncionarioView(); // Criando a janela anterior
+                    funcionarioView.setVisible(true);
 
                     SelecionarCompanhiaView window = new SelecionarCompanhiaView();
                     window.setVisible(true);
@@ -39,8 +41,36 @@ public class SelecionarCompanhiaView extends JFrame {
      */
     public SelecionarCompanhiaView() {initialize();}
 
-    public SelecionarCompanhiaView(SelecionarView parentFrame) {
+    public SelecionarCompanhiaView(FuncionarioView parentFrame) {
         this.parentFrame = parentFrame;
+        initialize();
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                if (parentFrame != null) {
+                    parentFrame.setVisible(true); // Torna a janela anterior visível novamente
+                }
+            }
+        });
+    }
+
+    public SelecionarCompanhiaView(GerenteView parentFrame) {
+        this.parentGerenteFrame = parentFrame;
+        initialize();
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                if (parentFrame != null) {
+                    parentFrame.setVisible(true); // Torna a janela anterior visível novamente
+                }
+            }
+        });
+    }
+
+    public SelecionarCompanhiaView(DiretorView parentFrame) {
+        this.parentDiretorFrame = parentFrame;
         initialize();
 
         addWindowListener(new WindowAdapter() {

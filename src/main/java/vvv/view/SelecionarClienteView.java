@@ -35,7 +35,31 @@ public class SelecionarClienteView extends JFrame {
         initialize();
     }
 
-    public SelecionarClienteView(SelecionarView parentFrame) {
+    public SelecionarClienteView(FuncionarioView parentFrame) {
+        initialize();
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                if (parentFrame != null) {
+                    parentFrame.setVisible(true); // Torna a janela anterior visível novamente
+                }
+            }
+        });
+    }
+
+    public SelecionarClienteView(GerenteView parentFrame) {
+        initialize();
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                if (parentFrame != null) {
+                    parentFrame.setVisible(true); // Torna a janela anterior visível novamente
+                }
+            }
+        });
+    }
+
+    public SelecionarClienteView(DiretorView parentFrame) {
         initialize();
         addWindowListener(new WindowAdapter() {
             @Override
