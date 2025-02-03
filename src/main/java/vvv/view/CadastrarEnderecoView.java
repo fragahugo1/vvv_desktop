@@ -15,6 +15,8 @@ import main.java.vvv.model.Endereco;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 
 public class CadastrarEnderecoView extends JFrame {
@@ -23,13 +25,13 @@ public class CadastrarEnderecoView extends JFrame {
      *
      */
     private static final long serialVersionUID = 1L;
-    private JFrame frame;
     private JTextField textField_Logradouro;
     private JTextField textField_Numero;
     private JTextField textField_Pais;
     private JTextField textField_CodigoPostal;
     private JTextField textField_Longitude;
     private JTextField textField_Latitude;
+    private SelecionarEnderecoView parentFrame;
 
     /**
      * Launch the application.
@@ -53,6 +55,19 @@ public class CadastrarEnderecoView extends JFrame {
     public CadastrarEnderecoView() {
         initialize();
     }
+    
+    public CadastrarEnderecoView(SelecionarEnderecoView parentFrame) {
+        this.parentFrame = parentFrame;
+    	initialize();
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                if (parentFrame != null) {
+                    parentFrame.setVisible(true); // Torna a janela anterior visível novamente
+                }
+            }
+        });
+    }
 
     /**
      * Initialize the contents of the frame.
@@ -60,7 +75,7 @@ public class CadastrarEnderecoView extends JFrame {
     private void initialize() {
 
         setBounds(100, 100, 450, 650);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
         JLabel lblNewLabel = new JLabel("Cadastro de Endereço ");

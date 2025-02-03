@@ -8,7 +8,7 @@ import java.sql.SQLException;
 public class LocalDAO {
 
     public boolean cadastrarLocal(Local local) throws ExceptionDAO {
-        String sql = "INSERT INTO local (id, name, id_endereco, tipo) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO local (nome, id_endereco, tipo) VALUES (?, ?, ?)";
 
         Connection conn = null;
         PreparedStatement pstm = null;
@@ -17,10 +17,9 @@ public class LocalDAO {
         try {
             conn = ConnectionMVC.getConnection();
             pstm = conn.prepareStatement(sql);
-            pstm.setLong(1, local.getId());
-            pstm.setString(2, local.getName());
-            pstm.setLong(3, local.getIdEndereco());
-            pstm.setString(4, local.getTipo().name());
+            pstm.setString(1, local.getName());
+            pstm.setLong(2, local.getIdEndereco());
+            pstm.setString(3, local.getTipo());
 
             int linhasAfetadas = pstm.executeUpdate();
             sucesso = linhasAfetadas > 0;

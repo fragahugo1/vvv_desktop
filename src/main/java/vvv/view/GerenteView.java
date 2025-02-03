@@ -68,8 +68,20 @@ public class GerenteView extends JFrame {
                 GerenteView.this.setVisible(false);
             }
         });
-        btnCadastrarCliente.setBounds(133, 56, 146, 46);
+        btnCadastrarCliente.setBounds(133, 45, 146, 46);
         getContentPane().add(btnCadastrarCliente);
+        
+        JButton btnEnderecos = new JButton("ENDEREÇOS");
+        btnEnderecos.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		SelecionarEnderecoView selecionarEnderecoView = new SelecionarEnderecoView(GerenteView.this);
+        		selecionarEnderecoView.setVisible(true);
+        		
+        		GerenteView.this.setVisible(false);
+        	}
+        });
+        btnEnderecos.setBounds(133, 111, 146, 46);
+        getContentPane().add(btnEnderecos);
 
         JButton btnCadastrarCompanhia = new JButton("COMPANHIA");
         btnCadastrarCompanhia.addActionListener(new ActionListener() {
@@ -83,32 +95,29 @@ public class GerenteView extends JFrame {
 
             }
         });
-        btnCadastrarCompanhia.setBounds(133, 140, 146, 46);
+        btnCadastrarCompanhia.setBounds(133, 184, 146, 46);
         getContentPane().add(btnCadastrarCompanhia);
 
         JButton btnCadastrarModal = new JButton("MODAL");
-        btnCadastrarModal.setBounds(133, 229, 146, 46);
+        btnCadastrarModal.setBounds(133, 249, 146, 46);
         getContentPane().add(btnCadastrarModal);
 
         JButton btnCriarReserva = new JButton("RESERVA");
-        btnCriarReserva.setBounds(133, 318, 146, 46);
+        btnCriarReserva.setBounds(133, 319, 146, 46);
         getContentPane().add(btnCriarReserva);
 
         JButton btnCadFunc = new JButton("Cadastrar Funcionário");
         btnCadFunc.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                abrirCadastroUsuario();
+            	CadastrarFuncionarioView telaCadastro = new CadastrarFuncionarioView(GerenteView.this);
+                telaCadastro.setVisible(true);
+                
+                GerenteView.this.setVisible(false);
             }
         });
-        btnCadFunc.setBounds(133, 406, 146, 46);
+        btnCadFunc.setBounds(133, 386, 146, 46);
         getContentPane().add(btnCadFunc);
 
-    }
-
-    private void abrirCadastroUsuario() {
-        CadastrarFuncionarioView telaCadastro = new CadastrarFuncionarioView(this);
-        telaCadastro.setVisible(true);
-        setVisible(false); // Oculta a tela atual
     }
 
 }

@@ -3,6 +3,8 @@ package main.java.vvv.controller;
 import main.java.vvv.dao.EnderecoDAO;
 import main.java.vvv.model.Endereco;
 
+import java.util.List;
+
 public class EnderecoController {
 
     private final EnderecoDAO enderecoDAO;
@@ -23,5 +25,9 @@ public class EnderecoController {
 
             return false;
         }
+    }
+
+    public List<Endereco> listarEnderecos() {
+        return enderecoDAO.listarEnderecos();
     }
 }

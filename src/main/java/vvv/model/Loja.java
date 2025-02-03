@@ -6,12 +6,12 @@ public class Loja {
     private String nome;
     private String cnpj;
     private boolean virtualmente;
-    private long id_endereco;
+    private Integer id_endereco;
 
     public Loja() {
     }
 
-    public Loja(String nome, String cnpj, boolean virtualmente, long id_endereco) {
+    public Loja(String nome, String cnpj, boolean virtualmente, Integer id_endereco) {
         this.nome = nome;
         this.cnpj = cnpj;
         this.virtualmente = virtualmente;
@@ -50,11 +50,11 @@ public class Loja {
         this.virtualmente = virtualmente;
     }
 
-    public long getIdEndereco() {
+    public Integer getIdEndereco() {
         return id_endereco;
     }
 
-    public void setIdEndereco(long id_endereco) {
+    public void setIdEndereco(Integer id_endereco) {
         this.id_endereco = id_endereco;
     }
 }
