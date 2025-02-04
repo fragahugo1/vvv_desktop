@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.40, for Win64 (x86_64)
 --
--- Host: localhost    Database: trabalho_viagem
+-- Host: localhost    Database: vvv_projeto
 -- ------------------------------------------------------
 -- Server version	8.0.40
 
@@ -16,36 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `reserva`
+-- Table structure for table `contato`
 --
 
-DROP TABLE IF EXISTS `reserva`;
+DROP TABLE IF EXISTS `contato`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `reserva` (
+CREATE TABLE `contato` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `data` date NOT NULL,
-  `chegada` datetime NOT NULL,
-  `partida` datetime NOT NULL,
-  `status` tinyint(1) NOT NULL,
-  `id_cliente` bigint unsigned NOT NULL,
-  `id_modal` bigint unsigned NOT NULL,
+  `contato` varchar(30) NOT NULL,
+  `tipo` enum('email','telefone','site') NOT NULL,
+  `id_loja` bigint unsigned DEFAULT NULL,
+  `id_passageiro` bigint unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
-  KEY `cliente_fkey` (`id_cliente`),
-  KEY `modal_fkey` (`id_modal`),
-  CONSTRAINT `cliente_fkey` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id`),
-  CONSTRAINT `modal_fkey` FOREIGN KEY (`id_modal`) REFERENCES `modal` (`id`)
+  KEY `loja_fk` (`id_loja`),
+  KEY `passageiro_fk` (`id_passageiro`),
+  CONSTRAINT `loja_fk` FOREIGN KEY (`id_loja`) REFERENCES `loja` (`id`),
+  CONSTRAINT `passageiro_fk` FOREIGN KEY (`id_passageiro`) REFERENCES `passageiro` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `reserva`
+-- Dumping data for table `contato`
 --
 
-LOCK TABLES `reserva` WRITE;
-/*!40000 ALTER TABLE `reserva` DISABLE KEYS */;
-/*!40000 ALTER TABLE `reserva` ENABLE KEYS */;
+LOCK TABLES `contato` WRITE;
+/*!40000 ALTER TABLE `contato` DISABLE KEYS */;
+/*!40000 ALTER TABLE `contato` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -57,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-23 22:20:33
+-- Dump completed on 2025-02-04 15:35:20
