@@ -8,6 +8,8 @@ public class Modal {
     private int capacidade;
     private Date dataFabricacao;
     private long id_companhia;
+    private Local partida;
+    private Local chegada;
     private TipoModal tipo;
 
     // Enum para o tipo
@@ -49,12 +51,28 @@ public class Modal {
         this.dataFabricacao = dataFabricacao;
     }
 
-    public long getIdCompanhia() {
+    public long getId_companhia() {
         return id_companhia;
     }
 
-    public void setIdCompanhia(long id_companhia) {
+    public void setId_companhia(long id_companhia) {
         this.id_companhia = id_companhia;
+    }
+
+    public Local getPartida() {
+        return partida;
+    }
+
+    public void setPartida(Local partida) {
+        this.partida = partida;
+    }
+
+    public Local getChegada() {
+        return chegada;
+    }
+
+    public void setChegada(Local chegada) {
+        this.chegada = chegada;
     }
 
     public TipoModal getTipo() {

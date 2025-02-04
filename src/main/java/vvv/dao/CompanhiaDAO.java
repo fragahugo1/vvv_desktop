@@ -16,11 +16,12 @@ public class CompanhiaDAO {
         Connection connection = null;
 
         try {
-            connection = new ConnectionMVC().getConnection();
+            connection = ConnectionMVC.getConnection();
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, companhia.getNome());
             preparedStatement.setString(2, companhia.getCnpj());
-            preparedStatement.setDate(3, Date.valueOf(LocalDate.now()));
+            preparedStatement.setDate(3, Date.valueOf(companhia.getActivatedAt()));
+
             int rowsInserted = preparedStatement.executeUpdate();
             return rowsInserted > 0;
 
@@ -56,7 +57,7 @@ public class CompanhiaDAO {
 
             while (rs.next()) {
                 Companhia c = new Companhia();
-                c.setId(rs.getLong("id"));
+                c.setId(rs.getInt("id"));
                 c.setNome(rs.getString("nome"));
                 c.setCnpj(rs.getString("cnpj"));
                 lista.add(c);
@@ -67,15 +68,41 @@ public class CompanhiaDAO {
         return lista;
     }
 
-    public boolean deletarCompanhia(String nome) {
-        String sql = "DELETE FROM companhia WHERE nome = ?";
+    public Companhia buscarPorId(long id) {
+        String sql = "SELECT * FROM companhia WHERE id = ?";
+        Companhia companhia = null;
         Connection connection = null;
 
         try {
             connection = new ConnectionMVC().getConnection();
             PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setLong(1, id);
 
-            stmt.setString(1, nome);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                companhia = new Companhia(
+                        rs.getString("nome"),
+                        rs.getString("cnpj")
+                );
+                companhia.setId(rs.getInt("id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return companhia;
+    }
+
+    public boolean deletarCompanhia(Companhia companhia) {
+        long id = companhia.getId();
+
+        String sql = "DELETE FROM companhia WHERE id = ?";
+        Connection connection = null;
+
+        try {
+            connection = new ConnectionMVC().getConnection();
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setLong(1, id);
+
             int linhasAfetadas = stmt.executeUpdate();
             return linhasAfetadas > 0;
         } catch (SQLException e) {
@@ -84,17 +111,20 @@ public class CompanhiaDAO {
         return false;
     }
 
-    public boolean atualizarCompanhia(int id, String nome, String cnpj) {
-        String sql = "UPDATE companhia SET nome = ?, cnpj = ? WHERE id = ?";
+    public boolean atualizarCompanhia(Companhia companhia) {
+        long id = companhia.getId();
+
+        String sql = "UPDATE companhia SET nome = ?, cnpj = ?, updatedAt = ? WHERE id = ?";
         Connection connection = null;
 
         try{
             connection = new ConnectionMVC().getConnection();
             PreparedStatement stmt = connection.prepareStatement(sql);
 
-            stmt.setString(1, nome);
-            stmt.setString(2, cnpj);
-            stmt.setInt(3, id);
+            stmt.setString(1, companhia.getNome());
+            stmt.setString(2, companhia.getCnpj());
+            stmt.setDate(3, Date.valueOf(companhia.getUpdatedAt()));
+            stmt.setLong(4, id);
 
             int linhasAfetadas = stmt.executeUpdate();
             return linhasAfetadas > 0;

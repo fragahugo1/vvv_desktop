@@ -1,9 +1,8 @@
 package main.java.vvv.controller;
 
-import java.sql.Date;
-
 import main.java.vvv.dao.ModalDAO;
 import main.java.vvv.model.Modal;
+import java.sql.Date;
 import main.java.vvv.model.Modal.TipoModal;
 
 public class ModalController {
@@ -27,5 +26,4 @@ public class ModalController {
             return false;
         }
     }
-
 }

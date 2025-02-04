@@ -73,6 +73,4 @@ public class Companhia {
         this.inactivatedAt = inactivatedAt;
     }
 
-    public void cadastrarCompanhia(Companhia companhia){
-    }
 }

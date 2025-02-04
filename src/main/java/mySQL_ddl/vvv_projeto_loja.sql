@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.40, for Win64 (x86_64)
 --
--- Host: localhost    Database: trabalho_viagem
+-- Host: localhost    Database: vvv_projeto
 -- ------------------------------------------------------
 -- Server version	8.0.40
 
@@ -16,30 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `ticket`
+-- Table structure for table `loja`
 --
 
-DROP TABLE IF EXISTS `ticket`;
+DROP TABLE IF EXISTS `loja`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `ticket` (
+CREATE TABLE `loja` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `assento` varchar(5) NOT NULL,
-  `id_reserva` bigint unsigned NOT NULL,
+  `nome` varchar(50) NOT NULL,
+  `cnpj` varchar(14) NOT NULL,
+  `virtualmente` tinyint(1) NOT NULL,
+  `id_endereco` bigint unsigned NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
-  KEY `reserva_fk` (`id_reserva`),
-  CONSTRAINT `reserva_fk` FOREIGN KEY (`id_reserva`) REFERENCES `reserva` (`id`)
+  KEY `endereco_fkey` (`id_endereco`),
+  CONSTRAINT `endereco_fkey` FOREIGN KEY (`id_endereco`) REFERENCES `endereco` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `ticket`
+-- Dumping data for table `loja`
 --
 
-LOCK TABLES `ticket` WRITE;
-/*!40000 ALTER TABLE `ticket` DISABLE KEYS */;
-/*!40000 ALTER TABLE `ticket` ENABLE KEYS */;
+LOCK TABLES `loja` WRITE;
+/*!40000 ALTER TABLE `loja` DISABLE KEYS */;
+/*!40000 ALTER TABLE `loja` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-23 22:20:32
+-- Dump completed on 2025-02-04 15:35:21
