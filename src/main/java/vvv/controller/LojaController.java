@@ -11,16 +11,20 @@ public class LojaController {
         this.lojaDAO = new LojaDAO();
     }
 
-    public boolean cadastrarLoja(String nome, String cnpj, boolean virtualmente, long id_endereco){
+    public boolean cadastrarLoja(String nome, String cnpj, boolean tipo, Integer idEndereco) {
+        // Se a loja for virtual, idEndereco será null
+        if (tipo) {
+            idEndereco = null;
+        }
+
+        Loja loja = new Loja(nome, cnpj, tipo, idEndereco);
+        LojaDAO lojaDAO = new LojaDAO();
 
         try {
-            Loja loja = new Loja(nome, cnpj, virtualmente, id_endereco);
             lojaDAO.cadastrarLoja(loja);
-
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-
             return false;
         }
     }

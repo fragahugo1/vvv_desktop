@@ -1,26 +1,22 @@
 package main.java.vvv.controller;
 
-import main.java.vvv.dao.LocalDAO;
 import main.java.vvv.model.Local;
+import main.java.vvv.dao.LocalDAO;
 
 public class LocalController {
+    private LocalDAO localDAO;
+    public LocalController() {this.localDAO = new LocalDAO();}
 
-    private final LocalDAO localDAO;
+    public boolean cadastrarLocal(String nome, int idEndereco, String tipo) {
 
-    public LocalController(){
-        this.localDAO = new LocalDAO();
-    }
-
-    public boolean cadastrarLocal(String nome, Long id_endereco, Local.TipoLocal tipo) {
+        Local local = new Local(nome, idEndereco, tipo);
+        LocalDAO localDAO = new LocalDAO();
 
         try {
-            Local local = new Local(nome, id_endereco, tipo);
             localDAO.cadastrarLocal(local);
-
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-
             return false;
         }
     }

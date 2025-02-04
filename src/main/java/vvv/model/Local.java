@@ -3,20 +3,15 @@ package main.java.vvv.model;
 public class Local {
 
     private Long id;
-    private String nome;
-    private Long id_endereco;
-    private TipoLocal tipo;
-
-    // Enum para o tipo
-    public enum TipoLocal {
-        aeroporto, rodoviaria, porto
-    }
+    private String name;
+    private int id_endereco;
+    private String tipo;
 
     public Local() {
     }
 
-    public Local(String name, Long id_endereco, TipoLocal tipo) {
-        this.nome = name;
+    public Local(String name, int id_endereco, String tipo) {
+        this.name = name;
         this.id_endereco = id_endereco;
         this.tipo = tipo;
     }
@@ -29,27 +24,27 @@ public class Local {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Long getIdEndereco() {
+    public int getIdEndereco() {
         return id_endereco;
     }
 
-    public void setIdEndereco(Long id_endereco) {
+    public void setIdEndereco(int id_endereco) {
         this.id_endereco = id_endereco;
     }
 
-    public TipoLocal getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(TipoLocal tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 }

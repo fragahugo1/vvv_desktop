@@ -2,7 +2,7 @@ package main.java.vvv.model;
 
 public class Endereco {
 
-    private long id;
+    private int id;
     private String rua;
     private int numero;
     private String pais;
@@ -22,11 +22,11 @@ public class Endereco {
         this.latitude = latitude;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
