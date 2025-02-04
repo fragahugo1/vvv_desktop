@@ -52,6 +52,7 @@ public class CadastrarLocalView extends JFrame {
         this.parentFrame = parentFrame;
         enderecoController = new EnderecoController();
         initialize();
+        carregarEnderecos();
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -63,15 +64,13 @@ public class CadastrarLocalView extends JFrame {
     }
 	
     private void initialize() {
-        setBounds(100, 100, 500, 400);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        getContentPane().setLayout(null);
+        
 
         setTitle("Cadastro de Local");
         setBounds(100, 100, 500, 450);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
-        getContentPane().setLayout(null);
+       
 
         JLabel lblTitulo = new JLabel("Cadastro de Local");
         lblTitulo.setBounds(100, 10, 300, 30);

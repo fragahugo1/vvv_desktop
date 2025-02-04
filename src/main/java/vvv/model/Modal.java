@@ -5,21 +5,19 @@ import java.sql.Date;
 public class Modal {
 
     private long id;
+    private String nome;
     private int capacidade;
     private Date dataFabricacao;
     private long id_companhia;
-    private TipoModal tipo;
+    private String tipo;
 
-    // Enum para o tipo
-    public enum TipoModal{
-        aviao, onibus, navio, trem
-    }
 
     public Modal() {
     }
 
-    public Modal(int capacidade, Date dataFabricacao, long id_companhia, TipoModal tipo) {
-        this.capacidade = capacidade;
+    public Modal(String nome, int capacidade, Date dataFabricacao, long id_companhia, String tipo) {
+        this.nome = nome;
+    	this.capacidade = capacidade;
         this.dataFabricacao = dataFabricacao;
         this.id_companhia = id_companhia;
         this.tipo = tipo;
@@ -31,6 +29,14 @@ public class Modal {
 
     public void setId(long id) {
         this.id = id;
+    }
+    
+    public String getNome() {
+    	return nome;
+    }
+    
+    public void setNome(String nome) {
+    	this.nome = nome;
     }
 
     public int getCapacidade() {
@@ -57,11 +63,11 @@ public class Modal {
         this.id_companhia = id_companhia;
     }
 
-    public TipoModal getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(TipoModal tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 }

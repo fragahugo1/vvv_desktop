@@ -39,7 +39,7 @@ public class SelecionarEnderecoView extends JFrame {
 	 * Create the application.
 	 */
 	public SelecionarEnderecoView() {
-		setTitle("Endereços");
+		
 		initialize();
 	}
 	
@@ -90,6 +90,7 @@ public class SelecionarEnderecoView extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		setTitle("Endereços");
 		setBounds(100, 100, 450, 400);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		getContentPane().setLayout(null);
@@ -113,7 +114,7 @@ public class SelecionarEnderecoView extends JFrame {
                 CadastrarLojaView cadastrarLojaView = new CadastrarLojaView(SelecionarEnderecoView.this);
                 cadastrarLojaView.setVisible(true);
 
-                SelecionarEnderecoView.this.setVisible(false);
+                //SelecionarEnderecoView.this.setVisible(false);
         	}
         });
         btnCadLoja.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -123,6 +124,10 @@ public class SelecionarEnderecoView extends JFrame {
         JButton btnCadLocal = new JButton("Cadastrar Local");
         btnCadLocal.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+                CadastrarLocalView cadastrarLocalView = new CadastrarLocalView(SelecionarEnderecoView.this);
+                cadastrarLocalView.setVisible(true);
+
+                //SelecionarEnderecoView.this.setVisible(false);
         	}
         });
         btnCadLocal.setFont(new Font("Tahoma", Font.PLAIN, 16));

@@ -1,9 +1,6 @@
 package main.java.vvv.controller;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +31,30 @@ public class CompanhiaController {
             return false;
         }
     }
+    
+    public List<Companhia> listarCompanhias() {
+    	return companhiaDAO.listarCompanhias();
+    }
 
+
+    public boolean deletarCompanhia(int id) {
+        try {
+            return companhiaDAO.deletarCompanhia(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    // Atualizar companhia
+    public boolean atualizarCompanhia(int id, String nome, String cnpj) {
+        try {
+
+            return companhiaDAO.atualizarCompanhia(id, nome, cnpj);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 }

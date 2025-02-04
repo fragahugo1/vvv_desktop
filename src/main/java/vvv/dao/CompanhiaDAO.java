@@ -1,6 +1,7 @@
 package main.java.vvv.dao;
 
 import java.sql.*;
+import java.sql.Connection;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +51,7 @@ public class CompanhiaDAO {
         Connection connection = null;
 
         try {
-            connection = new ConnectionMVC().getConnection();
+            connection =  ConnectionMVC.getConnection();
             PreparedStatement stmt = connection.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
 
@@ -67,15 +68,15 @@ public class CompanhiaDAO {
         return lista;
     }
 
-    public boolean deletarCompanhia(String nome) {
-        String sql = "DELETE FROM companhia WHERE nome = ?";
+    public boolean deletarCompanhia(int id) {
+        String sql = "DELETE FROM companhia WHERE id = ?";
         Connection connection = null;
 
         try {
             connection = new ConnectionMVC().getConnection();
             PreparedStatement stmt = connection.prepareStatement(sql);
 
-            stmt.setString(1, nome);
+            stmt.setInt(1, id);
             int linhasAfetadas = stmt.executeUpdate();
             return linhasAfetadas > 0;
         } catch (SQLException e) {
@@ -85,7 +86,7 @@ public class CompanhiaDAO {
     }
 
     public boolean atualizarCompanhia(int id, String nome, String cnpj) {
-        String sql = "UPDATE companhia SET nome = ?, cnpj = ? WHERE id = ?";
+        String sql = "UPDATE companhia SET nome = ?, cnpj = ?, updatedAt = ?  WHERE id = ?";
         Connection connection = null;
 
         try{
@@ -94,7 +95,8 @@ public class CompanhiaDAO {
 
             stmt.setString(1, nome);
             stmt.setString(2, cnpj);
-            stmt.setInt(3, id);
+            stmt.setDate(3, Date.valueOf(LocalDate.now()));
+            stmt.setInt(4, id);
 
             int linhasAfetadas = stmt.executeUpdate();
             return linhasAfetadas > 0;

@@ -46,14 +46,16 @@ public class EnderecoDAO {
 
     public List<Endereco> listarEnderecos() {
         List<Endereco> enderecos = new ArrayList<>();
-        String sql = "SELECT rua, numero, pais, codigoPostal, longitude, latitude FROM endereco";
+        String sql = "SELECT id, rua, numero, pais, codigoPostal, longitude, latitude FROM endereco";
 
-        try (Connection conn = ConnectionMVC.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
+        try {
 
+            Connection conn = ConnectionMVC.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 Endereco endereco = new Endereco();
+                endereco.setId(rs.getInt("id"));
                 endereco.setRua(rs.getString("rua"));
                 endereco.setNumero(rs.getInt("numero"));
                 endereco.setPais(rs.getString("pais"));

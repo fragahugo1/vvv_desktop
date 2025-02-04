@@ -7,15 +7,23 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
-import javax.swing.*;
 
-import main.java.vvv.controller.CompanhiaController;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+import main.java.vvv.controller.ModalController;
 import main.java.vvv.dao.CompanhiaDAO;
-import main.java.vvv.model.Companhia;
+import main.java.vvv.model.Modal;
 
-public class ListarCompanhiaView extends JFrame {
+public class ListarModalView extends JFrame {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
     private JTextField textFieldNome;
     private JTextField textFieldIdDelete;
     private JTextField textFieldId;
@@ -26,7 +34,7 @@ public class ListarCompanhiaView extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    ListarCompanhiaView window = new ListarCompanhiaView();
+                    ListarModalView window = new ListarModalView();
                     window.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -35,11 +43,11 @@ public class ListarCompanhiaView extends JFrame {
         });
     }
 
-    public ListarCompanhiaView() {
+    public ListarModalView() {
         initialize();
     }
 
-    public ListarCompanhiaView(SelecionarCompanhiaView parentFrame) {
+    public ListarModalView(SelecionarModalView parentFrame) {
         initialize();
         addWindowListener(new WindowAdapter() {
             @Override
@@ -63,7 +71,7 @@ public class ListarCompanhiaView extends JFrame {
         lblTitulo.setBounds(105, 20, 250, 40);
         getContentPane().add(lblTitulo);
 
-        JLabel lblListagem = new JLabel("Listagem de Companhia");
+        JLabel lblListagem = new JLabel("Listagem de Modais");
         lblListagem.setHorizontalAlignment(SwingConstants.CENTER);
         lblListagem.setFont(new Font("Tahoma", Font.PLAIN, 18));
         lblListagem.setBounds(105, 60, 250, 30);
@@ -74,7 +82,7 @@ public class ListarCompanhiaView extends JFrame {
         btnListar.setBounds(150, 100, 180, 40);
         btnListar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                listarCompanhias();
+                listarModais();
             }
         });
         getContentPane().add(btnListar);
@@ -85,8 +93,8 @@ public class ListarCompanhiaView extends JFrame {
         scrollPane.setBounds(50, 160, 400, 200);
         getContentPane().add(scrollPane);
 
-        // Seção para Deletar Companhia
-        JLabel lblDeletar = new JLabel("Deletar Companhia");
+        
+        JLabel lblDeletar = new JLabel("Deletar Modal");
         lblDeletar.setHorizontalAlignment(SwingConstants.CENTER);
         lblDeletar.setFont(new Font("Tahoma", Font.PLAIN, 18));
         lblDeletar.setBounds(105, 370, 250, 30);
@@ -107,13 +115,13 @@ public class ListarCompanhiaView extends JFrame {
         btnDeletar.setBounds(180, 450, 140, 40);
         btnDeletar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                deletarCompanhia();
+                deletarModal();
             }
         });
         getContentPane().add(btnDeletar);
 
         // Seção para Atualizar Companhia
-        JLabel lblUpdate = new JLabel("Update de Companhia");
+        JLabel lblUpdate = new JLabel("Update de Modal");
         lblUpdate.setHorizontalAlignment(SwingConstants.CENTER);
         lblUpdate.setFont(new Font("Tahoma", Font.PLAIN, 18));
         lblUpdate.setBounds(105, 500, 250, 30);
@@ -137,13 +145,13 @@ public class ListarCompanhiaView extends JFrame {
         textFieldNome.setBounds(200, 580, 200, 30);
         getContentPane().add(textFieldNome);
 
-        JLabel lblNovoCnpj = new JLabel("Novo CNPJ:");
-        lblNovoCnpj.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        lblNovoCnpj.setBounds(100, 620, 100, 30);
-        getContentPane().add(lblNovoCnpj);
+        JLabel lblNovaCapacidade = new JLabel("Nova Capacidade:");
+        lblNovaCapacidade.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        lblNovaCapacidade.setBounds(100, 620, 127, 30);
+        getContentPane().add(lblNovaCapacidade);
 
         textFieldCnpj = new JTextField();
-        textFieldCnpj.setBounds(200, 620, 200, 30);
+        textFieldCnpj.setBounds(237, 620, 163, 30);
         getContentPane().add(textFieldCnpj);
 
         JButton btnAtualizar = new JButton("Atualizar");
@@ -151,58 +159,60 @@ public class ListarCompanhiaView extends JFrame {
         btnAtualizar.setBounds(180, 660, 140, 40);
         btnAtualizar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                atualizarCompanhia();
+                atualizarModal();
             }
         });
         getContentPane().add(btnAtualizar);
     }
 
-    private void listarCompanhias() {
-        CompanhiaController controller = new CompanhiaController();
-        List<Companhia> lista = controller.listarCompanhias();
+    private void listarModais() {
+        ModalController controller = new ModalController();
+        List<Modal> lista = controller.listarModal();
 
         StringBuilder sb = new StringBuilder();
-        sb.append("ID\tNome\tCNPJ\n");
+        sb.append("ID\tNome\tCapacidade\tDt Fabricação\tTipo\n");
         sb.append("--------------------------------------------------------------------------------------------------------------\n");
 
-        for (Companhia c : lista) {
+        for (Modal c : lista) {
             sb.append(c.getId()).append("\t")
                     .append(c.getNome()).append("\t")
-                    .append(c.getCnpj()).append("\n");
+                    .append(c.getCapacidade()).append("\t")
+                    .append(c.getDataFabricacao()).append("\t")
+                    .append(c.getTipo()).append("\n");
         }
 
         textArea.setText(sb.toString());
     }
 
-    private void deletarCompanhia() {
-        Integer id = Integer.parseInt(textFieldIdDelete.getText().trim());
-        if (id <= 0 || id == null) {
+    private void deletarModal() {
+        int id = Integer.parseInt(textFieldIdDelete.getText().trim());
+        if (id <= 0) {
             JOptionPane.showMessageDialog(this, "Digite um ID válido!", "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        CompanhiaController controller = new CompanhiaController();
-        boolean sucesso = controller.deletarCompanhia(id);
+        ModalController controller = new ModalController();
+        boolean sucesso = controller.deletarModal(id);
 
         if (sucesso) {
-            JOptionPane.showMessageDialog(this, "Companhia deletada com sucesso!");
-            listarCompanhias(); // Atualiza a lista após a exclusão
+            JOptionPane.showMessageDialog(this, "Modal deletado com sucesso!");
+            listarModais(); // Atualiza a lista após a exclusão
         } else {
-            JOptionPane.showMessageDialog(this, "Erro ao deletar. Verifique se o nome está correto.", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Erro ao deletar. Verifique se o ID está correto.", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    private void atualizarCompanhia() {
+    private void atualizarModal() {
         int id = Integer.parseInt(textFieldId.getText());
         String novoNome = textFieldNome.getText();
-        String novoCnpj = textFieldCnpj.getText();
+        int novoCapacidade = Integer.parseInt(textFieldCnpj.getText());
 
-        CompanhiaController controller = new CompanhiaController();
-        boolean sucesso = controller.atualizarCompanhia(id, novoNome, novoCnpj);
+        ModalController controller = new ModalController();
+        boolean sucesso = controller.atualizarModal(id, novoNome, novoCapacidade);
 
         if (sucesso) {
             JOptionPane.showMessageDialog(this, "Companhia atualizada com sucesso!");
-            listarCompanhias();
+            listarModais();
         } else {
             JOptionPane.showMessageDialog(this, "Erro ao atualizar.", "Erro", JOptionPane.ERROR_MESSAGE);
         }

@@ -39,6 +39,7 @@ public class CadastrarLojaView extends JFrame {
 
     public CadastrarLojaView() {
         initialize();
+        carregarEnderecos();
          
     }
 
@@ -46,6 +47,7 @@ public class CadastrarLojaView extends JFrame {
         this.parentFrame = parentFrame;
         enderecoController = new EnderecoController();
         initialize();
+        carregarEnderecos();
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {

@@ -100,6 +100,14 @@ public class DiretorView extends JFrame {
         getContentPane().add(btnCadastrarCompanhia);
 
         JButton btnCadastrarModal = new JButton("MODAL");
+        btnCadastrarModal.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                SelecionarModalView selecionarModalView = new SelecionarModalView(DiretorView.this);
+                selecionarModalView.setVisible(true);
+
+                DiretorView.this.setVisible(false);
+            }
+        });
         btnCadastrarModal.setBounds(133, 249, 146, 46);
         getContentPane().add(btnCadastrarModal);
 
