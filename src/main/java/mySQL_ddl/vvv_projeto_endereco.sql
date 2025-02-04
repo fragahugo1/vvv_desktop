@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.40, for Win64 (x86_64)
 --
--- Host: localhost    Database: trabalho_viagem
+-- Host: localhost    Database: vvv_projeto
 -- ------------------------------------------------------
 -- Server version	8.0.40
 
@@ -16,31 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `companhia`
+-- Table structure for table `endereco`
 --
 
-DROP TABLE IF EXISTS `companhia`;
+DROP TABLE IF EXISTS `endereco`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `companhia` (
+CREATE TABLE `endereco` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `nome` varchar(50) NOT NULL,
-  `cnpj` varchar(14) NOT NULL,
-  `activatedAt` datetime NOT NULL,
-  `updatedAt` datetime DEFAULT NULL,
-  `inactivatedAt` datetime DEFAULT NULL,
+  `rua` varchar(30) NOT NULL,
+  `numero` int NOT NULL,
+  `pais` varchar(30) NOT NULL,
+  `codigoPostal` varchar(15) NOT NULL,
+  `longitude` varchar(30) DEFAULT NULL,
+  `latitude` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `companhia`
+-- Dumping data for table `endereco`
 --
 
-LOCK TABLES `companhia` WRITE;
-/*!40000 ALTER TABLE `companhia` DISABLE KEYS */;
-/*!40000 ALTER TABLE `companhia` ENABLE KEYS */;
+LOCK TABLES `endereco` WRITE;
+/*!40000 ALTER TABLE `endereco` DISABLE KEYS */;
+INSERT INTO `endereco` VALUES (1,'amilcar',80,'brasil','26070545','3415124','5124513');
+/*!40000 ALTER TABLE `endereco` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-23 22:20:33
+-- Dump completed on 2025-02-04 15:35:20

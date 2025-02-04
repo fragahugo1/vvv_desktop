@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.40, for Win64 (x86_64)
 --
--- Host: localhost    Database: trabalho_viagem
+-- Host: localhost    Database: vvv_projeto
 -- ------------------------------------------------------
 -- Server version	8.0.40
 
@@ -16,34 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `funcionario`
+-- Table structure for table `companhia`
 --
 
-DROP TABLE IF EXISTS `funcionario`;
+DROP TABLE IF EXISTS `companhia`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `funcionario` (
+CREATE TABLE `companhia` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `entrada` date NOT NULL,
-  `saida` date NOT NULL,
-  `id_loja` bigint unsigned NOT NULL,
-  `id_level` bigint unsigned NOT NULL,
+  `nome` varchar(50) NOT NULL,
+  `cnpj` varchar(14) NOT NULL,
+  `activatedAt` datetime NOT NULL,
+  `updatedAt` datetime DEFAULT NULL,
+  `inactivatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `id` (`id`),
-  KEY `loja_fkey` (`id_loja`),
-  KEY `level_fk` (`id_level`),
-  CONSTRAINT `level_fk` FOREIGN KEY (`id_level`) REFERENCES `level` (`id`),
-  CONSTRAINT `loja_fkey` FOREIGN KEY (`id_loja`) REFERENCES `loja` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `funcionario`
+-- Dumping data for table `companhia`
 --
 
-LOCK TABLES `funcionario` WRITE;
-/*!40000 ALTER TABLE `funcionario` DISABLE KEYS */;
-/*!40000 ALTER TABLE `funcionario` ENABLE KEYS */;
+LOCK TABLES `companhia` WRITE;
+/*!40000 ALTER TABLE `companhia` DISABLE KEYS */;
+INSERT INTO `companhia` VALUES (5,'hugo','431252415','2025-01-30 00:00:00','2025-01-31 00:00:00',NULL);
+/*!40000 ALTER TABLE `companhia` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -55,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-23 22:20:33
+-- Dump completed on 2025-02-04 15:35:21

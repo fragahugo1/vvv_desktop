@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.40, for Win64 (x86_64)
 --
--- Host: localhost    Database: trabalho_viagem
+-- Host: localhost    Database: vvv_projeto
 -- ------------------------------------------------------
 -- Server version	8.0.40
 
@@ -16,34 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `contato`
+-- Table structure for table `modal`
 --
 
-DROP TABLE IF EXISTS `contato`;
+DROP TABLE IF EXISTS `modal`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `contato` (
+CREATE TABLE `modal` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `contato` varchar(30) NOT NULL,
-  `tipo` enum('email','telefone','site') NOT NULL,
-  `id_loja` bigint unsigned DEFAULT NULL,
-  `id_passageiro` bigint unsigned DEFAULT NULL,
+  `capacidade` int NOT NULL,
+  `dataFabricacao` date NOT NULL,
+  `id_companhia` bigint unsigned NOT NULL,
+  `tipo` enum('aviao','trem','onibus','navio') NOT NULL,
+  `nome` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
-  KEY `loja_fk` (`id_loja`),
-  KEY `passageiro_fk` (`id_passageiro`),
-  CONSTRAINT `loja_fk` FOREIGN KEY (`id_loja`) REFERENCES `loja` (`id`),
-  CONSTRAINT `passageiro_fk` FOREIGN KEY (`id_passageiro`) REFERENCES `passageiro` (`id`)
+  KEY `companhia_fk` (`id_companhia`),
+  CONSTRAINT `companhia_fk` FOREIGN KEY (`id_companhia`) REFERENCES `companhia` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `contato`
+-- Dumping data for table `modal`
 --
 
-LOCK TABLES `contato` WRITE;
-/*!40000 ALTER TABLE `contato` DISABLE KEYS */;
-/*!40000 ALTER TABLE `contato` ENABLE KEYS */;
+LOCK TABLES `modal` WRITE;
+/*!40000 ALTER TABLE `modal` DISABLE KEYS */;
+/*!40000 ALTER TABLE `modal` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -55,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-23 22:20:32
+-- Dump completed on 2025-02-04 15:35:21
