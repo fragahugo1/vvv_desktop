@@ -111,6 +111,14 @@ public class GerenteView extends JFrame {
         getContentPane().add(btnCadastrarModal);
 
         JButton btnCriarReserva = new JButton("RESERVA");
+        btnCriarReserva.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                SelecionarReservaView selecionarReservaView = new SelecionarReservaView(GerenteView.this);
+                selecionarReservaView.setVisible(true);
+
+                GerenteView.this.setVisible(false);
+            }
+        });
         btnCriarReserva.setBounds(133, 319, 146, 46);
         getContentPane().add(btnCriarReserva);
 
