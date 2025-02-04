@@ -99,10 +99,26 @@ public class GerenteView extends JFrame {
         getContentPane().add(btnCadastrarCompanhia);
 
         JButton btnCadastrarModal = new JButton("MODAL");
+        btnCadastrarModal.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                SelecionarModalView selecionarModalView = new SelecionarModalView(GerenteView.this);
+                selecionarModalView.setVisible(true);
+
+                GerenteView.this.setVisible(false);
+            }
+        });
         btnCadastrarModal.setBounds(133, 249, 146, 46);
         getContentPane().add(btnCadastrarModal);
 
         JButton btnCriarReserva = new JButton("RESERVA");
+        btnCriarReserva.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                SelecionarReservaView selecionarReservaView = new SelecionarReservaView(GerenteView.this);
+                selecionarReservaView.setVisible(true);
+
+                GerenteView.this.setVisible(false);
+            }
+        });
         btnCriarReserva.setBounds(133, 319, 146, 46);
         getContentPane().add(btnCriarReserva);
 

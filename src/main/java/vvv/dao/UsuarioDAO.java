@@ -14,9 +14,9 @@ public class UsuarioDAO {
         Usuario usuario = null;
         String sql = "SELECT login, senha, id_level FROM usuario WHERE login = ? AND senha = ?";
 
-        try (Connection conn = ConnectionMVC.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
+        try {
+            Connection conn = ConnectionMVC.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, login);
             stmt.setString(2, senha);
 

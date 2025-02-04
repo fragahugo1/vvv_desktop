@@ -1,18 +1,19 @@
 package main.java.vvv.view;
 
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.ActionEvent;
 
-public class SelecionarCompanhiaView extends JFrame {
+import javax.swing.JButton;
+import javax.swing.JFrame;
 
-    private static final long serialVersionUID = 1L;
+
+public class SelecionarModalView extends JFrame {
+
+	private static final long serialVersionUID = 1L;
     private FuncionarioView parentFrame;
     private GerenteView parentGerenteFrame;
     private DiretorView parentDiretorFrame;
@@ -27,7 +28,7 @@ public class SelecionarCompanhiaView extends JFrame {
                     FuncionarioView funcionarioView = new FuncionarioView(); // Criando a janela anterior
                     funcionarioView.setVisible(true);
 
-                    SelecionarCompanhiaView window = new SelecionarCompanhiaView();
+                    SelecionarModalView window = new SelecionarModalView();
                     window.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -39,9 +40,9 @@ public class SelecionarCompanhiaView extends JFrame {
     /**
      * Create the application.
      */
-    public SelecionarCompanhiaView() {initialize();}
+    public SelecionarModalView() {initialize();}
 
-    public SelecionarCompanhiaView(FuncionarioView parentFrame) {
+    public SelecionarModalView(FuncionarioView parentFrame) {
         this.parentFrame = parentFrame;
         initialize();
 
@@ -55,7 +56,7 @@ public class SelecionarCompanhiaView extends JFrame {
         });
     }
 
-    public SelecionarCompanhiaView(GerenteView parentFrame) {
+    public SelecionarModalView(GerenteView parentFrame) {
         this.parentGerenteFrame = parentFrame;
         initialize();
 
@@ -69,7 +70,7 @@ public class SelecionarCompanhiaView extends JFrame {
         });
     }
 
-    public SelecionarCompanhiaView(DiretorView parentFrame) {
+    public SelecionarModalView(DiretorView parentFrame) {
         this.parentDiretorFrame = parentFrame;
         initialize();
 
@@ -92,31 +93,30 @@ public class SelecionarCompanhiaView extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        JButton btnCadComp = new JButton("Cadastrar Companhia");
-        btnCadComp.addActionListener(new ActionListener() {
+        JButton btnCadModal = new JButton("Cadastrar Modal");
+        btnCadModal.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                CadastrarCompanhiaView cadastrarCompanhiaView = new CadastrarCompanhiaView(SelecionarCompanhiaView.this);
-                cadastrarCompanhiaView.setVisible(true);
+                CadastrarModalView cadastrarModalView = new CadastrarModalView(SelecionarModalView.this);
+                cadastrarModalView.setVisible(true);
 
-                //SelecionarCompanhiaView.this.setVisible(false);
+                //SelecionarModalView.this.setVisible(false);
             }
         });
-        btnCadComp.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        btnCadComp.setBounds(108, 60, 206, 69);
-        getContentPane().add(btnCadComp);
+        btnCadModal.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        btnCadModal.setBounds(108, 60, 206, 69);
+        getContentPane().add(btnCadModal);
 
         JButton btnListarComp = new JButton("Atualizar/Deletar/Listar");
         btnListarComp.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ListarCompanhiaView listarCompanhiaView = new ListarCompanhiaView(SelecionarCompanhiaView.this);
-                listarCompanhiaView.setVisible(true);
+                ListarModalView listarModalView = new ListarModalView(SelecionarModalView.this);
+                listarModalView.setVisible(true);
 
-                //SelecionarCompanhiaView.this.setVisible(false);
+                //SelecionarModalView.this.setVisible(false);
             }
         });
         btnListarComp.setFont(new Font("Tahoma", Font.PLAIN, 16));
         btnListarComp.setBounds(108, 180, 206, 69);
         getContentPane().add(btnListarComp);
     }
-
 }

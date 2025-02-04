@@ -87,7 +87,7 @@ public class SelecionarClienteView extends JFrame {
                 CadastrarClienteView cadastrarClienteView = new CadastrarClienteView(SelecionarClienteView.this);
                 cadastrarClienteView.setVisible(true);
 
-                SelecionarClienteView.this.setVisible(false);
+                //SelecionarClienteView.this.setVisible(false);
             }
         });
         btnCadCliente.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -100,7 +100,7 @@ public class SelecionarClienteView extends JFrame {
                 CadastrarPassageiroView cadastrarPassageiroView = new CadastrarPassageiroView(SelecionarClienteView.this);
                 cadastrarPassageiroView.setVisible(true);
 
-                SelecionarClienteView.this.setVisible(false);
+                //SelecionarClienteView.this.setVisible(false);
             }
         });
         btnCadPass.setFont(new Font("Tahoma", Font.PLAIN, 16));

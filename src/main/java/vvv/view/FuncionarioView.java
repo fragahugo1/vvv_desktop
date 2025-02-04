@@ -100,10 +100,26 @@ public class FuncionarioView extends JFrame {
         getContentPane().add(btnCadastrarCompanhia);
 
         JButton btnCadastrarModal = new JButton("MODAL");
+        btnCadastrarModal.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+                SelecionarModalView selecionarModalView = new SelecionarModalView(FuncionarioView.this);
+                selecionarModalView.setVisible(true);
+
+                FuncionarioView.this.setVisible(false);
+        	}
+        });
         btnCadastrarModal.setBounds(133, 249, 146, 46);
         getContentPane().add(btnCadastrarModal);
 
         JButton btnCriarReserva = new JButton("RESERVA");
+        btnCriarReserva.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                SelecionarReservaView selecionarReservaView = new SelecionarReservaView(FuncionarioView.this);
+                selecionarReservaView.setVisible(true);
+
+                FuncionarioView.this.setVisible(false);
+            }
+        });
         btnCriarReserva.setBounds(133, 319, 146, 46);
         getContentPane().add(btnCriarReserva);
     }
